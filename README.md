@@ -1,102 +1,66 @@
+# LiveFlow AI
 
-VenueFlow AI - Real-Time Crowd Monitoring System 🚨📷
+LiveFlow AI is an AI-powered dual-camera crowd monitoring and face detection system using YOLOv8, integrated with Twilio SMS alerting and real-time threshold-based detection. It provides a dashboard-style visualization and sends alerts when the detected face count exceeds a set threshold.
 
-VenueFlow AI is a dual-camera, AI-powered crowd monitoring solution designed for real-time facial detection, people counting, alerting, and database logging. It's built using OpenCV, YOLOv8, Twilio, and an SQLPlus-compatible backend.
+## 🚀 Features
+- 📷 Real-time face detection using YOLOv8 from two USB webcams.
+- ⚠️ Threshold-based crowd alerts with visual red borders.
+- 📲 Instant SMS alerts using Twilio when face count exceeds the defined limit.
+- 🧠 Extendable anomaly detection and heatmap functionality.
+- 🛡️ Modular and scalable code structure with OpenCV and Ultralytics YOLO.
 
------------------------------------------------------
-FEATURES
------------------------------------------------------
-🎯 YOLOv8 Face Detection – Accurate and fast detection
-🔥 Dual Camera Support – Monitor two webcams simultaneously
-🚨 Twilio Alerts – Get real-time SMS notifications when crowd thresholds are exceeded
-🗃️ Database Logging – All alerts are stored in a SQLPlus-compatible database (e.g., Oracle)
-🧠 Threshold Control – Set your own limits for crowd alerts
+## 🧰 Tech Stack
+- Python 3.9+
+- OpenCV
+- Ultralytics YOLOv8
+- Twilio API (for SMS alerts)
+- NumPy
+- Flask (for web interface if needed)
+- SQLite / SQLPlus (for optional logging)
+- Two external USB webcams
 
------------------------------------------------------
-TECHNOLOGY STACK
------------------------------------------------------
-Component          | Tech Used
--------------------|-----------------------------------
-Language           | Python 3.x
-Face Detection     | YOLOv8 via Ultralytics
-Video Processing   | OpenCV
-SMS Alerts         | Twilio
-Database           | SQLPlus-compatible (Oracle) via cx_Oracle
-UI/Monitoring      | OpenCV GUI Window
+## 📦 Folder Structure
+```
+LiveFlowAI/
+│
+├── main.py                   # Main execution script
+├── camera_stream.py          # Handles webcam stream
+├── crowd_detector.py         # YOLOv8 face detection logic
+├── alert_system.py           # Twilio alert integration
+├── database.py               # Logs count into DB (optional)
+├── heatmap_generator.py      # (Optional) For heatmap visualization
+├── anomaly_detector.py       # (Optional) Detects sudden anomalies
+├── requirements.txt          # Python dependencies
+```
 
------------------------------------------------------
-GETTING STARTED
------------------------------------------------------
-1. Clone the Repository
+## ⚙️ How it works
+1. Captures real-time video from two webcams.
+2. YOLOv8 detects faces from both feeds.
+3. If face count > threshold (default = 5), red alert border is shown.
+4. Sends SMS alert via Twilio API.
+5. Logs detection count to the database (optional).
 
-git clone https://github.com/your-username/venueflow-ai.git
-cd venueflow-ai
+## 🔔 Twilio SMS Alert Format
+```
+⚠️ Crowd Alert! Current count is {count}, which exceeds the threshold {threshold}.
+```
 
-2. Install Dependencies
+## ✅ Setup Instructions
+1. Clone the repository.
+2. Install dependencies: `pip install -r requirements.txt`
+3. Connect two USB webcams or any other camera with help of ip address.
+4. Replace Twilio credentials in `alert_system.py`.
+5. Run the project: `python main.py`
 
-pip install -r requirements.txt
+## 🧪 Future Scope
+- Web-based admin dashboard to visualize live feed and analytics.
+- Email alert integration with logs.
+- Face recognition and blacklist matching.
+- Heatmap overlay using crowd density.
+- Cloud deployment support.
 
-3. Configure Credentials
+## 🤝 Contribution
+Pull requests are welcome. For major changes, please open an issue first.
 
-Create a config.py file in the root directory and add the following:
-
-# config.py
-DB_USER = 'your_db_user'
-DB_PASSWORD = 'your_db_password'
-DB_DSN = 'hostname:port/service_name'
-
-TWILIO_ACCOUNT_SID = 'your_sid'
-TWILIO_AUTH_TOKEN = 'your_token'
-TWILIO_FROM_NUMBER = '+1234567890'
-ALERT_TO_NUMBER = '+911234567890'
-
-4. Prepare YOLO Model
-
-Ensure yolov8n.pt is downloaded and placed in the root directory.
-Download from: https://github.com/ultralytics/ultralytics
-
------------------------------------------------------
-SAMPLE ORACLE DB TABLE SCHEMA
------------------------------------------------------
-CREATE TABLE crowd_alerts (
-    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    camera_id NUMBER,
-    detected_faces NUMBER,
-    threshold NUMBER,
-    alert_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
------------------------------------------------------
-RUN THE SYSTEM
------------------------------------------------------
-python main.py
-
------------------------------------------------------
-WHAT IT DOES
------------------------------------------------------
-- Detects faces using YOLOv8
-- Displays real-time video from 2 cameras side-by-side
-- Overlays the face count on each feed
-- Highlights frames with a red border when threshold exceeded
-- Sends SMS alert using Twilio (with cooldown to avoid spam)
-- Logs each threshold breach to the database
-
------------------------------------------------------
-SAMPLE OUTPUT
------------------------------------------------------
-[ALERT 🚨] Camera 1: 7 faces detected!
-[ALERT SENT] SID: SMxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-[DB LOG] Alert logged successfully
-
------------------------------------------------------
-CONTACT
------------------------------------------------------
-For issues or questions, open an Issue or reach out:
-
-Email: your.email@example.com
-Twitter: @yourhandle
-
------------------------------------------------------
-LICENSE
------------------------------------------------------
-This project is licensed under the MIT License – see the LICENSE file for details.
+## 📝 License
+This project is open-source and free to use under the MIT License.
