@@ -63,7 +63,7 @@ LiveFlowAI/
 Pull requests are welcome. For major changes, please open an issue first.
 
 ## Team Members:
-L Pravena - praveenalanda@gmail.com
+L Praveena - praveenalanda@gmail.com
 K. Jayanth - jayanth.kapudasu@gmail.com
 P. Vasudev Rao - vasudevaraoparadesi@gmail.com
 
