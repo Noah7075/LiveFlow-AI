@@ -62,5 +62,10 @@ LiveFlowAI/
 ## 🤝 Contribution
 Pull requests are welcome. For major changes, please open an issue first.
 
+## Team Members:
+L Pravena - praveenalanda@gmail.com
+K. Jayanth - jayanth.kapudasu@gmail.com
+P. Vasudev Rao - vasudevaraoparadesi@gmail.com
+
 ## 📝 License
 This project is open-source and free to use under the MIT License.
